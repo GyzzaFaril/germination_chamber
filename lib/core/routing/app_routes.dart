@@ -8,5 +8,10 @@ class AppRoutes {
   static const String monitoring = '/monitoring';
   static const String notifications = '/notifications';
   static const String settings = '/settings';
+  static const String settingsCalibration = '/settings/calibration';
+  static const String settingsDateTime = '/settings/date-time';
+  static const String settingsAppearance = '/settings/appearance';
+  static const String settingsLanguage = '/settings/language';
+  static const String settingsSystemInfo = '/settings/system-info';
   static const String sensor = '/sensor';
 }

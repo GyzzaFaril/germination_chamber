@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/routing/app_routes.dart';
 import '../../core/theme/app_colors.dart';
+import '../../features/setpoint/services/setpoint_protection.dart';
+import '../../features/settings/services/calibration_protection.dart';
 
 /// Sidebar desktop sesuai desain Figma Germination Chamber
 class AppSidebar extends StatelessWidget {
@@ -207,9 +209,26 @@ class AppSidebar extends StatelessWidget {
       color: isSelected ? const Color(0x28FFFFFF) : Colors.transparent,
       borderRadius: BorderRadius.circular(8),
       child: InkWell(
-        onTap: () {
+        onTap: () async {
           if (!isSelected) {
-            context.go(route);
+            // Navigation guard saat meninggalkan Setpoint dengan perubahan yang belum disimpan
+            if (currentLocation.startsWith(AppRoutes.setpoint) &&
+                SetpointProtection.hasUnsavedChanges) {
+              final proceed =
+                  await SetpointProtection.confirmNavigation(context);
+              if (!proceed) return;
+            }
+            if (!context.mounted) return;
+            // Navigation guard saat meninggalkan Kalibrasi Sensor dengan perubahan yang belum disimpan
+            if (currentLocation.startsWith(AppRoutes.settingsCalibration) &&
+                CalibrationProtection.hasUnsavedChanges) {
+              final proceed =
+                  await CalibrationProtection.confirmNavigation(context);
+              if (!proceed) return;
+            }
+            if (context.mounted) {
+              context.go(route);
+            }
           }
         },
         borderRadius: BorderRadius.circular(8),

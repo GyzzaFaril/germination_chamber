@@ -7,7 +7,12 @@ import '../../features/device_control/screens/device_control_screen.dart';
 import '../../features/notifications/screens/notifications_screen.dart';
 import '../../features/sensor/screens/sensor_screen.dart';
 import '../../features/setpoint/screens/setpoint_screen.dart';
+import '../../features/settings/screens/appearance_screen.dart';
+import '../../features/settings/screens/date_time_screen.dart';
+import '../../features/settings/screens/language_screen.dart';
+import '../../features/settings/screens/sensor_calibration_screen.dart';
 import '../../features/settings/screens/settings_screen.dart';
+import '../../features/settings/screens/system_information_screen.dart';
 import '../../shared/widgets/main_shell.dart';
 import '../../shared/widgets/not_found_screen.dart';
 
@@ -68,6 +73,36 @@ class AppRouter {
             path: AppRoutes.settings,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: SettingsScreen(),
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.settingsCalibration,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: SensorCalibrationScreen(),
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.settingsDateTime,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: DateTimeSettingsScreen(),
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.settingsAppearance,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: AppearanceSettingsScreen(),
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.settingsLanguage,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: LanguageSettingsScreen(),
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.settingsSystemInfo,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: SystemInformationScreen(),
             ),
           ),
           GoRoute(
