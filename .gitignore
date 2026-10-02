@@ -43,3 +43,14 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Environment variables, credentials, and secrets
+*.env
+*.env.*
+*.keystore
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+key.properties
